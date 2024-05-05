@@ -36,8 +36,14 @@ public static class ArraysTester {
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     private static double[] MultiplesOf(double number, int length)
     {
+        double[] multiples = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+        return multiples;
         // TODO Problem 1 Start (don't forget to fill out the 01-prove-response.docx)
-        return new double[0]; // replace this return statement with your own
+        //return new double[0]; // replace this return statement with your own
     }
     
     /// <summary>
@@ -50,6 +56,13 @@ public static class ArraysTester {
     /// </summary>
     private static void RotateListRight(List<int> data, int amount)
     {
+        int effectiveAmount = amount % data.Count;
+        if (effectiveAmount == 0)
+            return; // No need to rotate if amount is 0 or a multiple of list size
+
+        List<int> rotatedList = data.GetRange(data.Count - effectiveAmount, effectiveAmount);
+        data.RemoveRange(data.Count - effectiveAmount, effectiveAmount);
+        data.InsertRange(0, rotatedList);
         // TODO Problem 2 Start (don't forget to fill out the 01-prove-response.docx)
     }
 }
